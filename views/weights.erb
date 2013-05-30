@@ -1,0 +1,10 @@
+<html>
+WEIGHTS FOR <%= @person %>
+
+
+<% @weights.each do |w| %>
+<p><%= w.created_at.strftime("%m/%d/%y") %> | <%= w.weight %></p>
+
+<% end %>
+
+</html>

@@ -1,8 +1,8 @@
 class CreatePosts < ActiveRecord::Migration
  def up
   	create_table :posts do |t|
-      t.string :user
-      t.decimal :weight
+      t.string :phone
+      t.integer :weight
       t.timestamps
     end
   end
