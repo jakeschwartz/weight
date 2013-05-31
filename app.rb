@@ -80,7 +80,7 @@ post "/createuser" do
 end
 	
 post "/sms" do
-	if (100 < params[:Body].to_f < 300)
+	if params[:Body].to_f > 50
 		phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
