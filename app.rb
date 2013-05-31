@@ -46,7 +46,7 @@ post "/" do
 	dude = User.find_by_phone(params[:phone])
 	puts dude.id
 	w = Post.new
-	w.weight = params[:weight]
+	w.weight = params[:weight].to_f
 	w.phone = dude.phone
 	w.created_at = Time.now
 	w.updated_at = Time.now
@@ -80,22 +80,43 @@ post "/createuser" do
 end
 	
 post "/sms" do
-	phone = params[:From]
-	dude = User.find_by_phone(phone)
-	name = dude.first_name
-	weight = params[:Body].to_i
-	puts phone
-	puts weight
-	w = Post.new
-	w.weight = weight
-	w.phone = phone
-	w.created_at = Time.now
-	w.updated_at = Time.now
-	w.save
-	twiml = Twilio::TwiML::Response.new do |r|
-    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}."
-  	end
-  twiml.text
+	if 100 < params[:Body].to_f < 300
+		phone = params[:From]
+		dude = User.find_by_phone(phone)
+		name = dude.first_name
+		weight = params[:Body].to_f
+		puts phone
+		puts weight
+		w = Post.new
+		w.weight = weight
+		w.phone = phone
+		w.created_at = Time.now
+		w.updated_at = Time.now
+		w.save
+		twiml = Twilio::TwiML::Response.new do |r|
+	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
+	  	end
+	  twiml.text
+	elsif params[:Body] == "yes" || "no"
+	 	phone = params[:From]
+		dude = User.find_by_phone(phone)
+		name = dude.first_name
+		if params[:Body] == "yes"
+			work_out = true
+		else
+			work_out = false
+		end
+		w = Post.last
+		w.work_out = work_out
+		w.save
+		twiml = Twilio::TwiML::Response.new do |r|
+	    	r.Sms "Thanks! Have a great day!"
+		end
+	else
+	  	twiml = Twilio::TwiML::Response.new do |r|
+	    	r.Sms "Sorry - I'm not sophisticated enough to understand your text."
+		end
+	end 	
 end
 
 	
