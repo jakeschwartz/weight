@@ -82,7 +82,6 @@ post "/sms" do
 	weight = params[:Body].to_i
 	dude = User.find_by_phone(phone)
 	puts dude
-	my_name = dude.first_name
 	w = Post.new
 	w.weight = weight
 	w.phone = phone
