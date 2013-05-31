@@ -109,6 +109,7 @@ post "/sms" do
 		w = Post.last
 		w.work_out = work_out
 		w.save
+		puts w.work_out
 		twiml = Twilio::TwiML::Response.new do |r|
 	    	r.Sms "Thanks! Have a great day!"
 		end
