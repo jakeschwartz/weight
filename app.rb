@@ -82,6 +82,8 @@ end
 post "/sms" do
 	phone = params[:From]
 	weight = params[:Body].to_i
+	puts phone
+	puts weight
 	w = Post.new
 	w.weight = weight
 	w.phone = phone
