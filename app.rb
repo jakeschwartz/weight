@@ -89,7 +89,7 @@ post "/sms" do
 	w.updated_at = Time.now
 	w.save
 	twiml = Twilio::TwiML::Response.new do |r|
-    	r.Sms "Hello, #{my_name}. Thanks for the weigh-in at #{weight}."
+    	r.Sms "Thanks for the weigh-in at #{weight}."
   	end
   twiml.text
 end
