@@ -2,7 +2,24 @@
 require "sinatra"
 require "sinatra/activerecord"
 
-set :database, "sqlite3:///blog.db"
+configure :development, :test do
+  set :database, 'sqlite://blog.db'
+end
+ 
+configure :production do
+  # Database connection
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')  
+  
+  ActiveRecord::Base.establish_connection(
+    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'utf8'
+  )
+end
+ 
 
 class Post < ActiveRecord::Base
 	belongs_to :user
