@@ -80,14 +80,13 @@ end
 post "/sms" do
 	phone = params[:From]
 	weight = params[:Body].to_i
-	dude = User.find_by_phone(phone)
-	puts dude
 	w = Post.new
 	w.weight = weight
 	w.phone = phone
 	w.created_at = Time.now
 	w.updated_at = Time.now
 	w.save
+	print w
 	twiml = Twilio::TwiML::Response.new do |r|
     	r.Sms "Thanks for the weigh-in at #{weight}."
   	end
