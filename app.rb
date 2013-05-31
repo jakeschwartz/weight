@@ -80,7 +80,7 @@ post "/createuser" do
 end
 	
 post "/sms" do
-	if 100 < params[:Body].to_f < 300
+	if (100 < params[:Body].to_f < 300)
 		phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
@@ -97,7 +97,7 @@ post "/sms" do
 	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
 	  	end
 	  twiml.text
-	elsif params[:Body] == "yes" || "no"
+	elsif params[:Body] == ("yes" || "no")
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
