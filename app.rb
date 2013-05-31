@@ -97,7 +97,7 @@ post "/sms" do
 	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
 	  	end
 	  twiml.text
-	elsif params[:Body] == ("yes" || "no")
+	elsif params[:Body] == ("yes" || "no" || "Yes" || "No")
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
