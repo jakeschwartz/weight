@@ -78,8 +78,8 @@ post "/createuser" do
 end
 	
 post "/sms" do
-	phone = params[:from]
-	weight = params[:body].to_s
+	phone = params[:FROM]
+	weight = params[:BODY].to_i
 	w = Post.new
 	w.weight = weight
 	w.phone = phone
