@@ -1,8 +1,10 @@
-source http://rubygems.org
+source "http://rubygems.org"
 
 gem "sinatra"
 gem "activerecord"
 gem "sinatra-activerecord"
+gem "twilio-ruby"
+
 
 
 group :development do

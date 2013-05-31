@@ -1,6 +1,13 @@
 # app.rb
 require "sinatra"
 require "sinatra/activerecord"
+require 'twilio-ruby'
+
+account_sid = 'AC215e00c06a154432a2d22fcf97914084'
+auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
+
+# set up a client to talk to the Twilio REST API
+@client = Twilio::REST::Client.new account_sid, auth_token
 
 configure :development, :test do
   set :database, 'sqlite://blog.db'
@@ -44,6 +51,7 @@ post "/" do
 	w.save
 	redirect '/'
 end
+
 	
 get "/createuser" do
 	erb :"/create_user"
@@ -68,6 +76,22 @@ post "/createuser" do
 	u.save
 	redirect '/'
 end
+	
+post "/sms" do
+	phone = params[:from]
+	weight = params[:body].to_s
+	w = Post.new
+	w.weight = weight
+	w.phone = phone
+	w.created_at = Time.now
+	w.updated_at = Time.now
+	w.save
+	twiml = Twilio::TwiML::Response.new do |r|
+    	r.Sms "Hello, #{phone}. Thanks for the weigh-in at #{weight}."
+  	end
+  twiml.text
+end
+
 	
 
 def test_function(a,b)
