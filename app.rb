@@ -1,7 +1,7 @@
 # app.rb
 require "sinatra"
 require "sinatra/activerecord"
-require 'twilio-ruby'
+require "twilio-ruby"
 
 $stdout.sync = true
 
