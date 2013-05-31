@@ -3,6 +3,8 @@ require "sinatra"
 require "sinatra/activerecord"
 require 'twilio-ruby'
 
+$stdout.sync = true
+
 account_sid = 'AC215e00c06a154432a2d22fcf97914084'
 auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
 
