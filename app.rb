@@ -97,7 +97,7 @@ post "/sms" do
 	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
 	  	end
 	  twiml.text
-	elsif params[:Body] == ("yes" || "no" || "Yes" || "No")
+	elsif params[:Body] == "yes" || params[:Body] == "no" || params[:Body] == "Yes" || params[:Body] == "No"
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
@@ -113,10 +113,12 @@ post "/sms" do
 		twiml = Twilio::TwiML::Response.new do |r|
 	    	r.Sms "Thanks! Have a great day!"
 		end
+		twiml.text
 	else
 	  	twiml = Twilio::TwiML::Response.new do |r|
 	    	r.Sms "Sorry - I'm not sophisticated enough to understand your text."
 		end
+		twiml.text
 	end 	
 end
 
