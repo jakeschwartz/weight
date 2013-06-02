@@ -3,7 +3,7 @@ WEIGHTS FOR <%= @person %>
 
 
 <% @weights.each do |w| %>
-<p><%= w.created_at.strftime("%m/%d/%y") %> | <%= w.weight %> | <%= work_out %> </p>
+<p><%= w.created_at.strftime("%m/%d/%y") %> | <%= w.weight %> | <%= w.work_out %> </p>
 
 <% end %>
 
