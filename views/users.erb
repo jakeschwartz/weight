@@ -2,7 +2,7 @@
 
 
 <% @users.each do |w| %>
-<p> w.id | <%= w.first_name %> |  <%= w.last_name %> |  <%= w.phone  %> |</p>
+<p><%= w.first_name %> |  <%= w.last_name %> |  <%= w.phone  %> | <a href="/user/<%= w.id %>/weights"> View </a> </p>
 
 <% end %>
 
