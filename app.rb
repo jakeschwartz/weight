@@ -63,7 +63,7 @@ end
 	
 get "/showusers" do
 	erb :"/users"
-	@users = User.all
+	@users = User.all.to_a
 end
 
 
