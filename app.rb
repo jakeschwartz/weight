@@ -59,6 +59,14 @@ get "/createuser" do
 	erb :"/create_user"
 end
 
+
+	
+get "/showusers" do
+	erb :"/users"
+	@users = User.all
+end
+
+
 get "/user/:id/weights" do
 	userphone = User.find(params[:id]).phone
 	@person = User.find(params[:id]).first_name
