@@ -12,7 +12,7 @@ auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
 @client = Twilio::REST::Client.new account_sid, auth_token
 
 configure :development, :test do
-  set :database, 'sqlite://blog.db'
+  set :database, 'sqlite:///blog.db'
 end
  
 configure :production do
@@ -62,8 +62,10 @@ end
 
 	
 get "/showusers" do
+	data = User.all
+	@users = data.to_a
+	puts @users
 	erb :"/users"
-	@users = User.all.to_a
 end
 
 
