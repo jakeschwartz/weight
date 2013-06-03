@@ -12,7 +12,11 @@ auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
 @client = Twilio::REST::Client.new account_sid, auth_token
 
 configure :development, :test do
+<<<<<<< HEAD
   set :database, 'sqlite3:///blog.db'
+=======
+  set :database, 'sqlite:///blog.db'
+>>>>>>> 335163a4c7571fb156ff9dadee653a71a009c1a1
 end
  
 configure :production do
@@ -59,6 +63,16 @@ get "/createuser" do
 	erb :"/create_user"
 end
 
+
+	
+get "/showusers" do
+	data = User.all
+	@users = data.to_a
+	puts @users
+	erb :"/users"
+end
+
+
 get "/user/:id/weights" do
 	userphone = User.find(params[:id]).phone
 	@person = User.find(params[:id]).first_name
@@ -97,7 +111,7 @@ post "/sms" do
 	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
 	  	end
 	  twiml.text
-	elsif params[:Body] == ("yes" || "no" || "Yes" || "No")
+	elsif params[:Body] == "yes" || params[:Body] == "no" || params[:Body] == "Yes" || params[:Body] == "No"
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
@@ -113,10 +127,12 @@ post "/sms" do
 		twiml = Twilio::TwiML::Response.new do |r|
 	    	r.Sms "Thanks! Have a great day!"
 		end
+		twiml.text
 	else
 	  	twiml = Twilio::TwiML::Response.new do |r|
 	    	r.Sms "Sorry - I'm not sophisticated enough to understand your text."
 		end
+		twiml.text
 	end 	
 end
 
