@@ -12,7 +12,7 @@ auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
 @client = Twilio::REST::Client.new account_sid, auth_token
 
 configure :development, :test do
-  set :database, 'sqlite://blog.db'
+  set :database, 'sqlite3:///blog.db'
 end
  
 configure :production do
@@ -101,7 +101,7 @@ post "/sms" do
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
-		if params[:Body] == "yes"
+		if params[:Body] == ("yes" || "Yes")
 			work_out = true
 		else
 			work_out = false
