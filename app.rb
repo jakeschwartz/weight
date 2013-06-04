@@ -12,12 +12,9 @@ auth_token = 'd94b7056f2c9d3ad00bd462916880b2a'
 @client = Twilio::REST::Client.new account_sid, auth_token
 
 configure :development, :test do
-<<<<<<< HEAD
   set :database, 'sqlite3:///blog.db'
-=======
-  set :database, 'sqlite:///blog.db'
->>>>>>> 335163a4c7571fb156ff9dadee653a71a009c1a1
 end
+
  
 configure :production do
   # Database connection
