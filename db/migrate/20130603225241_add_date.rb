@@ -4,6 +4,6 @@ class AddDate < ActiveRecord::Migration
   end
 
   def down
-  	remove_column :posts
+  	remove_column :posts, :date_created
   end
 end
