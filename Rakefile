@@ -11,5 +11,6 @@ task :input_reminder => :production do
 	    		r.Sms "We haven't talked today! What did you weigh in at?"
 	  		end
 	  	end
-	  puts "Did the reminder task" 			
+	  end
+	 puts "Did the reminder task" 			
 end
