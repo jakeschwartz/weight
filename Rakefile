@@ -2,7 +2,7 @@
 require "./app"
 require "sinatra/activerecord/rake"
 
-task :input_reminder => :production do
+task :input_reminder do
 	 user_list = User.all
 	 user_list.each do |user| 
 	 	posts = Post.where(:phone => user.phone).to_a
