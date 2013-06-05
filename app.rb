@@ -112,7 +112,7 @@ post "/sms" do
 	 	phone = params[:From]
 		dude = User.find_by_phone(phone)
 		name = dude.first_name
-		if params[:Body] == ("yes" || "Yes")
+		if params[:Body] == "yes" || params[:Body] == "Yes"
 			work_out = true
 		else
 			work_out = false
