@@ -104,7 +104,7 @@ post "/sms" do
 		w.date_created = Time.now.to_date
 		w.created_at = Time.now
 		w.updated_at = Time.now
-		yesterday = Post.where(:phone => phone, date_created => Time.now.to_date - 1)
+		yesterday = Post.where(:phone => phone, :date_created => Time.now.to_date - 1)
 		y = yesterday[0].weight
 		diff = weight - y
 		if diff <= 0
