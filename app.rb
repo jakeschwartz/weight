@@ -106,7 +106,7 @@ post "/sms" do
 		w.updated_at = Time.now
 		yesterday = Post.where(:phone => phone, :date_created => Time.now.to_date - 1)
 		y = yesterday[0].weight
-		diff = weight - y
+		diff = (weight - y).round(1)
 		if diff <= 0
 			diff_word = "lost"
 			diff = diff * -1
