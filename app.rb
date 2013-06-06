@@ -104,9 +104,18 @@ post "/sms" do
 		w.date_created = Time.now.to_date
 		w.created_at = Time.now
 		w.updated_at = Time.now
+		yesterday = Post.where(:phone => phone, date_created => Time.now.to_date - 1)
+		y = yesterday[0].weight
+		diff = weight - y
+		if diff <= 0
+			diff_word = "lost"
+			diff = diff * -1
+		else
+			diff_word = "gained"
+		end
 		w.save
 		twiml = Twilio::TwiML::Response.new do |r|
-	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. Did you work out yesterday (yes/no)?"
+	    	r.Sms "Thanks #{name}! We logged the weigh-in at #{weight}. You #{diff_word} #{diff} pounds.  Did you work out yesterday (yes/no)?"
 	  	end
 	  twiml.text
 	elsif params[:Body] == "yes" || params[:Body] == "no" || params[:Body] == "Yes" || params[:Body] == "No"
