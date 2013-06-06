@@ -101,6 +101,7 @@ post "/sms" do
 		w = Post.new
 		w.weight = weight
 		w.phone = phone
+		w.date_created = Time.now.to_date
 		w.created_at = Time.now
 		w.updated_at = Time.now
 		w.save
