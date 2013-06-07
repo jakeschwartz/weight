@@ -145,8 +145,3 @@ end
 
 	
 
-def test_function(a,b)
-	puts a * b
-	Post.create(weight:a,phone:b)
-end
-
