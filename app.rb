@@ -91,6 +91,14 @@ post "/createuser" do
 	redirect '/'
 end
 	
+get "/graph" 
+	graph "First Graph" do
+		bar "Sales", [5, 2, 6, 2, 1]
+	end
+	erb :"/graph"
+end
+	
+	
 post "/sms" do
 	if params[:Body].to_f > 50
 		phone = params[:From]
