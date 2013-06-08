@@ -6,6 +6,7 @@ gem "sinatra-activerecord"
 gem "twilio-ruby"
 gem "sinatra_more"
 gem "sinatra-graph"
+gem "googlecharts"
 
 
 

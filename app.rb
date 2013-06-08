@@ -3,6 +3,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
 require "sinatra/graph"
+require "gchart"
 
 $stdout.sync = true
 
@@ -95,9 +96,7 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	App.graph "First Graph", :prefix => './' do
-		bar "Sales", [5, 2, 6, 2, 1]
-	end
+	Gchart.line(:data => [0, 26, 32, 54, 65, 76], :format => 'file', :filename => 'first_graph.png')
 	erb :"/graph"
 end
 	
