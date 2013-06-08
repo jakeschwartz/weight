@@ -96,7 +96,7 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	Gchart.line(:data => [0, 26, 32, 54, 65, 76], :format => 'file', :filename => 'first_graph.png')
+	Gchart.line(:data => [0, 26, 32, 54, 65, 76], :format => 'file', :filename => './first_graph.png')
 	erb :"/graph"
 end
 	
