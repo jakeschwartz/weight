@@ -31,6 +31,9 @@ configure :production do
   )
 end
  
+class App < Sinatra::Base
+	register Sinatra::Graph
+end
 
 class Post < ActiveRecord::Base
 	belongs_to :user
