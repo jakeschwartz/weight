@@ -2,6 +2,7 @@
 require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
+require "sinatra/graph"
 
 $stdout.sync = true
 
