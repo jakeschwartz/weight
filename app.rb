@@ -95,7 +95,7 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	App.graph "First Graph", :prefix => '/graphs' do
+	App.graph "First Graph", :prefix => './' do
 		bar "Sales", [5, 2, 6, 2, 1]
 	end
 	erb :"/graph"
