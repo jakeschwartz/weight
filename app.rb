@@ -91,7 +91,7 @@ post "/createuser" do
 	redirect '/'
 end
 	
-get "/graph" 
+get "/graph" do
 	graph "First Graph" do
 		bar "Sales", [5, 2, 6, 2, 1]
 	end
