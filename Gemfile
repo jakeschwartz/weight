@@ -6,7 +6,7 @@ gem "sinatra-activerecord"
 gem "twilio-ruby"
 gem "pony"
 gem "lazy_high_charts"
-gem "sinatra-graph"
+gem "scruffy"
 
 
 
