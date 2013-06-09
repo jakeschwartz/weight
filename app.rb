@@ -190,9 +190,9 @@ def weekly_email
 		puts user_posts
 		weight_array = Array.new
 		date_array = Array.new
-		for i in 0..user_posts.length
-			weight_array.push(user_posts[i].weight)
-			date_array.push(user_posts[i].date_created)
+		user_posts.each do |p|
+			weight_array.push(p.weight)
+			date_array.push(p.date_created)
 		end
 		puts weight_array
 		puts date_array
