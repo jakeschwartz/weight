@@ -100,7 +100,7 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	App.graph "graph-test", :type => 'pie' do
+	App.graph "graphtest", :type => 'pie' do
  		pie "Share", { "Product one" => 100, "Product Two" => 300 }
 	end
 	erb :"/graph"
