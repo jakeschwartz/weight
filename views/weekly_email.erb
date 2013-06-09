@@ -1,0 +1,21 @@
+<HTML>
+
+
+	<body>
+	
+		Hello - this is the weekly email template.
+		
+		<img src="<%= @url %>">
+		
+		<% for @data.each do |u| %>
+		<table>
+			<tr>
+				<td><%= u.date_created %></td>
+				<td><%= u.weight %></td>
+			</tr>
+		</table>
+		<% end %>
+
+	</body>
+
+</HTML>

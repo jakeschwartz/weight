@@ -123,6 +123,7 @@ get "/mail-test" do
     redirect '/' 
 end
 
+
 	
 post "/sms" do
 	if params[:Body].to_f > 50
@@ -181,5 +182,40 @@ post "/sms" do
 	end 	
 end
 
-	
+def weekly_email
+	user_list = User.where(:phone => "+19179725712")
+	user_list.each do |u|
+		user_posts = Post.where(:phone => u.phone, :date_created => (Time.now.to_date - 7)..(Time.now.to_date)).select("date_created, weight")
+		weight_array = Array.new
+		date_array = Array.new
+		for i in 0..user_posts.length
+			weight_array.push(user_posts[i].weight)
+			date_array.push(user_posts[i].date_created)
+		end
+		@data = user_posts
+		@url = Gchart.line(:data => weight_array)
+		body = erb(:weekly_email, layout:false)
+		Pony.mail(
+	      :from => 'Jake Schwartz' + "<" + 'jakeschwartz@gmail.com' + ">",
+	      :to => u.email,
+	      :subject => "Your weekly progress chart",
+	      :body => body,
+	      :port => '587',
+	      :via => :smtp,
+	      :via_options => { 
+	        :address              => 'smtp.gmail.com', 
+	        :port                 => '587', 
+	        :enable_starttls_auto => true, 
+	        :user_name            => 'jakeschwartz@gmail.com', 
+	        :password             => 'm1a2n3d4', 
+	        :authentication       => :plain, 
+	      })
+	end
+end
+
+		
+			
+		
+		
+		
 
