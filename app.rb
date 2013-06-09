@@ -2,8 +2,8 @@
 require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
-require "sinatra/graph"
-require "gchart"
+require "pony"
+
 
 $stdout.sync = true
 
@@ -33,7 +33,7 @@ configure :production do
 end
  
 class App < Sinatra::Base
-	register Sinatra::Graph
+	
 end
 
 class Post < ActiveRecord::Base
@@ -100,6 +100,25 @@ get "/graph" do
 	erb :"/graph"
 end
 	
+get "/mail-test" do
+	 Pony.mail(
+      :from => 'Jake Schwartz' + "<" + 'jakeschwartz@gmail.com' + ">",
+      :to => 'j@generalassemb.ly',
+      :subject => "Weight app has contacted you",
+      :body => 'This is nothing but a test',
+      :port => '587',
+      :via => :smtp,
+      :via_options => { 
+        :address              => 'smtp.gmail.com', 
+        :port                 => '587', 
+        :enable_starttls_auto => true, 
+        :user_name            => 'jakeschwartz@gmail.com', 
+        :password             => 'm1a2n3d4o5', 
+        :authentication       => :plain, 
+      })
+    redirect '/' 
+end
+
 	
 post "/sms" do
 	if params[:Body].to_f > 50
