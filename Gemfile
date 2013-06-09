@@ -5,7 +5,7 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem "twilio-ruby"
 gem "pony"
-gem "chartkick"
+gem "lazy_high_charts"
 
 
 

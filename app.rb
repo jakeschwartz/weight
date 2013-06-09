@@ -3,7 +3,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
 require "pony"
-require "chartkick"
+
 
 
 $stdout.sync = true

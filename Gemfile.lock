@@ -15,10 +15,13 @@ GEM
     arel (3.0.2)
     bond (0.4.3)
     builder (3.0.4)
-    chartkick (1.1.0)
+    hash-deep-merge (0.1.1)
     i18n (0.6.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    lazy_high_charts (1.4.2)
+      bundler (>= 1.0)
+      hash-deep-merge
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -71,7 +74,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  chartkick
+  lazy_high_charts
   pg
   pony
   shotgun
