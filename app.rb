@@ -183,9 +183,9 @@ post "/sms" do
 end
 
 def weekly_email
-	user_list = User.where(:phone => "+19179725712")
-	user_list.each do |u|
-		user_posts = Post.where(:phone => u.phone, :date_created => (Time.now.to_date - 7)..(Time.now.to_date)).select("date_created, weight")
+	user_list = User.all
+	for n in 0..user_list.length
+		user_posts = Post.where(:phone => user_list[n].phone, :date_created => (Time.now.to_date - 7)..(Time.now.to_date)).select("date_created, weight")
 		weight_array = Array.new
 		date_array = Array.new
 		for i in 0..user_posts.length
