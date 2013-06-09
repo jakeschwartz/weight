@@ -3,6 +3,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
 require "pony"
+require "chartkick"
 
 
 $stdout.sync = true
@@ -32,6 +33,7 @@ configure :production do
   )
 end
  
+# Set up classes 
 class App < Sinatra::Base
 	
 end
@@ -43,6 +45,8 @@ end
 class User < ActiveRecord::Base
 	has_many :posts
 end
+
+#Routes
 
 get "/" do
   	erb :"/index"
