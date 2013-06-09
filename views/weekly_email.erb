@@ -7,11 +7,12 @@
 		
 		<img src="<%= @url %>">
 		
-		<% for @data.each do |u| %>
+		
 		<table>
+		<% for u in 0..@data.length %>
 			<tr>
-				<td><%= u.date_created %></td>
-				<td><%= u.weight %></td>
+				<td><%= @data[u].date_created %></td>
+				<td><%= @data[u].weight %></td>
 			</tr>
 		</table>
 		<% end %>
