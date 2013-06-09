@@ -3,7 +3,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
 require "pony"
-
+require "sinatra/graph"
 
 
 $stdout.sync = true
@@ -35,7 +35,7 @@ end
  
 # Set up classes 
 class App < Sinatra::Base
-	
+	register Sinatra::Graph
 end
 
 class Post < ActiveRecord::Base
@@ -100,7 +100,9 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	Gchart.line(:data => [0, 26, 32, 54, 65, 76], :format => 'file', :filename => './first_graph.png')
+	App.graph "graph-test", :type => 'pie' do
+ 		pie "Share", { "Product one" => 100, "Product Two" => 300 }
+	end
 	erb :"/graph"
 end
 	
