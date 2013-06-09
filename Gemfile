@@ -7,7 +7,7 @@ gem "twilio-ruby"
 gem "pony"
 gem "lazy_high_charts"
 gem "scruffy"
-
+gem "googlecharts"
 
 
 group :development do
