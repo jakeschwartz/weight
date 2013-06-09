@@ -3,7 +3,7 @@ require "sinatra"
 require "sinatra/activerecord"
 require "twilio-ruby"
 require "pony"
-require "sinatra/graph"
+require "scruffy"
 
 
 $stdout.sync = true
@@ -35,7 +35,6 @@ end
  
 # Set up classes 
 class App < Sinatra::Base
-	register Sinatra::Graph
 end
 
 class Post < ActiveRecord::Base
@@ -100,9 +99,22 @@ post "/createuser" do
 end
 	
 get "/graph" do
-	App.graph "graphtest", :type => 'pie' do
- 		pie "Share", { "Product one" => 100, "Product Two" => 300 }
-	end
+	graph = Scruffy::Graph.new
+    graph.title = "Favourite Snacks"
+    graph.renderer = Scruffy::Renderers::Pie.new
+
+    graph.add :pie, '', {
+      'Apple' => 20,
+      'Banana' => 100,
+      'Orange' => 70,
+      'Taco' => 30
+    }
+
+    graph.render :to => "pie_test.svg"
+    graph.render :width => 300, :height => 200,
+      :to => "pie_test.png", :as => 'png'
+
+
 	erb :"/graph"
 end
 	
