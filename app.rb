@@ -113,7 +113,7 @@ get "/mail-test" do
         :port                 => '587', 
         :enable_starttls_auto => true, 
         :user_name            => 'jakeschwartz@gmail.com', 
-        :password             => 'm1a2n3d4o5', 
+        :password             => 'm1a2n3d4', 
         :authentication       => :plain, 
       })
     redirect '/' 
